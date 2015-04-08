@@ -1,9 +1,9 @@
 IPMI detailed introduction
 
-1. The meaning of IPMI
+First, the meaning of IPMI
 The intelligent platform management interface (IPMI:Intelligent Platform Management Interface) is an application on the server management system design standard, put forward by Intel, HP, Dell and NEC in 1998, the latest version of the current  v_2.0 .The design of the interface standard contributes to the implementation of the system management in different hardware server system, the centralized management of different platforms as possible.
 
-2.The history of IPMI development
+Second,the history of IPMI development
 IPMI 2 is a series of technical specifications of the third generation of products. Provides a standard way of monitoring the running status of mechanical components for computing device. In addition to the fan and the voltage, IPMI also monitors the temperature and power status, moreover, IPMI can even remotely reboot the machine.
 
 Before the release of IPMI, every computer manufacturers have developed various components in the platform of performance monitoring solutions, these solutions tend to be an enterprise or telecommunications company combined with a specific manufacturer, usually the management efficiency is low. With the surge in data center computing devices and telecommunication network, the formation of long-term disadvantages have become increasingly serious.
@@ -22,7 +22,7 @@ IPMI 2 is backward compatible with IPMI 1.5, also support the virtual LAN (VLAN)
 
 IPMI is a specification of IT series, managers and employees should be familiar with IPMI. Up to the high point of view, IPMI is a management tool for modern data center and field operation complexity, and can be implemented in several ways: by one is complete with shared information support system in operation; two is similar to the keyboard, mouse and monitor (KVM) and some remote operation function supported by technology three; IPMI can help IT manager to manage grid, cluster, virtual equipment, and other emerging PC and server portfolio strategy.
 
-3. design examples highlight the advantages of IPMI
+Third, design examples highlight the advantages of IPMI
 Let us look at the design of a IPMI application example: a company to purchase a number of servers, plans to install a different application systems are used in the database and network print server. The traditional way is to separately by different system administrator with expertise in a system one by one to complete the installation, configuration and maintenance management, but the management to achieve unified management of the use of IPMI. The following three aspects from the installation of diagnosis to see IPMI configuration, monitoring, fault management advantage.
 
 The traditional OS installed first to new hardware to the server driven, need professional installation manual OS or system administrator, the administrator needs to wait for the installation process is completed in the server side; and the use of IPMI, only need to insert the OS installation CD can be automatically mounted self guiding, driving in 3 ~ 4 key point in time to load the new hardware. Insert the OS installation disk, can be completed automatically installed OS, can also be a backup of important data by the system backup tools, convenient for system fault occurs, greatly saves time and manpower.
@@ -31,7 +31,7 @@ To facilitate the administrator according to alarm log analysis and diagnosis. E
 
 The traditional fault diagnosis is generally the administrator to the fault site according to the experience of fault diagnosis, and the use of IPMI, administrators can access the remote server through the network or serial port, through access to the event log and sensor data to analyze, identify the cause of the fault, and through remote operation to achieve the server recovery.
 
-4. Under the surface technology
+Forth,. Under the surface technology
 Above we know the advantages of IPMI, it is the means by which these functions? Let 's take a look at the surface:
 
 In the IPMI management platform, BMC (Baseboard Management Controller, because of the multi integrated on the main board of the name) is the core of the controller, system management software for each management device management, is through the communication with the BMC to achieve.
@@ -68,17 +68,12 @@ While in command transmission security, users need not worry about, enhanced aut
 
 Generally speaking, BMC has the following functions:
 
-1 through the serial port to access system
-
-2 fault logging and SNMP alerts
-
-3 to access the system event log (System Event Log, SEL) and sensor status
-
-4 control startup and shutdown
-
-5 independent power supply system or state support
-
-6 for the system settings, text console redirection text utilities and console based operating system
+	through the serial port to access system
+	fault logging and SNMP alerts
+	to access the system event log (System Event Log, SEL) and sensor status
+	control startup and shutdown
+	independent power supply system or state support
+	for the system settings, text console redirection text utilities and console based operating system
 
 Through IPMI, the user can take the initiative to monitor assembly condition, to ensure that does not exceed the preset threshold, such as server temperature. In this way, by avoiding unscheduled outages, to help maintain the running time of the IT resource. The ability of IPMI to forecast the failure can also contribute to the IT cycle management. By examining the system event log (SEL), can be more easily determine the fault component.
 
@@ -101,25 +96,3 @@ At present, in the management of network devices, more and more by the standard 
 
 Management development to gradually distributed
 The traditional management products is generally M/A architecture, a management center and a plurality of devices for communication between independent and managed without any contact between devices, limit the sharing of network resources and use, but also for the administrator's management way is limited. With the development of the management system, the connection between the devices will gradually strengthen, not only the management center can control access devices, devices can realize the sharing of resources.
-
-Finally, IPMI function
-- remote power control (on / off / cycle / status)
-
-- IP Serial over LAN serial port mapping (SoL)
-
-- support healthy shutdown (Graceful shutdown support)
-
-- the case of environmental monitoring (temperature, rotate speed of fan, CPU voltage etc.)
-
-- Remote ID LED control (Remote ID LED control)
-
-- the system event log (System event log)
-
-- platform event tracking (Platform Event Traps)
-
-- the data record (Data logging)
-
-- a virtual KVM session (Virtual KVM) is currently not supported
-
-- virtual media (Virtual Media) is currently not supported
-
