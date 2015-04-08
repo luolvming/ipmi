@@ -1,4 +1,4 @@
- IPMI detailed introduction
+IPMI detailed introduction
 
 1. The meaning of IPMI
 The intelligent platform management interface (IPMI:Intelligent Platform Management Interface) is an application on the server management system design standard, put forward by Intel, HP, Dell and NEC in 1998, the latest version of the current  v_2.0 .The design of the interface standard contributes to the implementation of the system management in different hardware server system, the centralized management of different platforms as possible.
@@ -22,7 +22,7 @@ IPMI 2 is backward compatible with IPMI 1.5, also support the virtual LAN (VLAN)
 
 IPMI is a specification of IT series, managers and employees should be familiar with IPMI. Up to the high point of view, IPMI is a management tool for modern data center and field operation complexity, and can be implemented in several ways: by one is complete with shared information support system in operation; two is similar to the keyboard, mouse and monitor (KVM) and some remote operation function supported by technology three; IPMI can help IT manager to manage grid, cluster, virtual equipment, and other emerging PC and server portfolio strategy.
 
-  3. design examples highlight the advantages of IPMI
+3. design examples highlight the advantages of IPMI
 Let us look at the design of a IPMI application example: a company to purchase a number of servers, plans to install a different application systems are used in the database and network print server. The traditional way is to separately by different system administrator with expertise in a system one by one to complete the installation, configuration and maintenance management, but the management to achieve unified management of the use of IPMI. The following three aspects from the installation of diagnosis to see IPMI configuration, monitoring, fault management advantage.
 
 The traditional OS installed first to new hardware to the server driven, need professional installation manual OS or system administrator, the administrator needs to wait for the installation process is completed in the server side; and the use of IPMI, only need to insert the OS installation CD can be automatically mounted self guiding, driving in 3 ~ 4 key point in time to load the new hardware. Insert the OS installation disk, can be completed automatically installed OS, can also be a backup of important data by the system backup tools, convenient for system fault occurs, greatly saves time and manpower.
@@ -82,7 +82,7 @@ Generally speaking, BMC has the following functions:
 
 Through IPMI, the user can take the initiative to monitor assembly condition, to ensure that does not exceed the preset threshold, such as server temperature. In this way, by avoiding unscheduled outages, to help maintain the running time of the IT resource. The ability of IPMI to forecast the failure can also contribute to the IT cycle management. By examining the system event log (SEL), can be more easily determine the fault component.
 
-7. The future technology trends
+Thus, the future technology trends
 
 Domestic and foreign management vendor management product variety, a more common equipment monitoring and management, network management, application management products and so on, in almost all fields of IT industry. From the analysis of some of the industry management of products, the following development trends:
 
@@ -102,7 +102,7 @@ At present, in the management of network devices, more and more by the standard 
 Management development to gradually distributed
 The traditional management products is generally M/A architecture, a management center and a plurality of devices for communication between independent and managed without any contact between devices, limit the sharing of network resources and use, but also for the administrator's management way is limited. With the development of the management system, the connection between the devices will gradually strengthen, not only the management center can control access devices, devices can realize the sharing of resources.
 
-Eight, IPMI function
+Finally, IPMI function
 - remote power control (on / off / cycle / status)
 
 - IP Serial over LAN serial port mapping (SoL)
