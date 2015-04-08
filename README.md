@@ -1,99 +1,125 @@
-IPMI详细介绍 	 
-  	 
-一、IPMI含义 	 
+ IPMI detailed introduction
 
-智能平台管理接口（IPMI：Intelligent Platform Management Interface）是一项应用于服务器管理系统设计的标准，由Intel、HP、Dell和NEC公司于1998年共同提出，当前最新版本为2.0。利用此接口标准设计有助于在不同类服务器系统硬件上实施系统管理，使不同平台的集中管理成为可能。
-	 
-二、IPMI发展历史 	 
-IPMI 2.0是该系列技术规范的第三代产品。提供了一种标准化方式以便监控计算设备运行时各机械组件的状况。除了风扇和电压，IPMI还监视温度和电源状态，不仅如此，IPMI甚至能够远程重启机器。
-在IPMI推出之前，每个计算机厂商都自行开发了监控其平台中各组件性能的方案，这些方案倾向于将一个企业或电信公司与某一具体厂商紧密结合，通常管理效率低下。随着数据中心计算设备和电信网络的激增，这种长期形成的缺点已经变得日益严重。
-英特尔并不受硬件厂商的欢迎，所以如果能够开发和推广一种合理化方案，对英特尔来说是很有意义的。最初的支持者有惠普、戴尔和NEC。位于德州Sugar Land的服务器厂商Augmentix副总裁兼CTO戴夫•麦金利（DaveMcKinley）说："倡导者们计划开发出一种标准方式，可以通过不同的平台获取信息。"
-根据Aberdeen集团的一份报告，列出了这项基础技术所带来的诸多好处。其中一部分优点确实可以通过任一款功能强大的诊断程序包的测试，不过其它的好处就仅能通过多厂商标准得以实现，这其中包括通过合理化运行支持以及对数个硬软件产品和平台进行标准化就可以降低拥有成本的功能。
-这些都不错，但是IPMI究竟是如何工作的？麦金利解释说，主板上有一种被称为基板管理控制器（BMC Baseboard Management Controller）的小型分离式处理器，BMC与主处理器和板上各元件相连接，监控并且在一定程度上管理各物理组件的状态。因为是分离处理器，所以不论主处理器是否可用，系统都会运行。2001年发布的IPMI1.0中，这种联系是通过串口进行。后来相继推出的两个版本1.5和2.0，则加强其监控功能，实现了远程控制。
-从很多方面来说IPMI的远程监控功能都是关键。AVOCENT OSA部门销售部经理史蒂夫•洛克夫（Steve Rokov）指出："从IT前景来看主要的进步在于是否能够通过LAN访问服务器。"IPMI 1.5实现了这一点并提供重启、复位和电源控制等远程管理功能。
-显然，安全问题是任何远程控制网络组件方案的重要因素。最新推出的IPMI 2.0关注的正是安全问题，它通过一种被称为安全散列算法－1（SHA－1）的技术支持高级认证。高级编码功能则由高级编码标准（AES）提供。
-IPMI 2.0向下兼容IPMI 1.5，也支持虚拟LAN（VLAN）。VLAN通过给予管理员更多的控制权加强了安全性能。洛克夫表示：“现在你有了在物理LAN上构建一个管理LAN的概念，你就可以保护LAN上的数据不受其它通信的影响，VLAN会发出警告说只有某些控制台能够看见和执行命令。”
-IPMI是一个规范系列，IT经理和员工应该熟悉IPMI。上升到高一些的角度来看，IPMI是管理现代数据中心和现场操作复杂性的又一种工具，并且能够通过几种方式实现：一是完备与之共享信息的运行支持系统；二是提供类似于键盘,鼠标和显示器（KVM）技术所支持的一些远程操作功能；三是IPMI可以有效帮助IT经理管理网格、群集、虚拟设备，以及其它新兴的PC和服务器组合战略。 	 
-  	 
-三、设计实例凸显IPMI优势 	 
-先让我们来看一个IPMI设计的应用实例：一家公司购置了若干台服务器，计划安装不同应用系统分别应用于数据库、网络、打印服务器等。传统实现方式是分别由在某一应用系统有专长的不同系统管理员逐一完成安装、配置及后期维护管理，但利用IPMI管理即可实现统一的管理。以下从安装配置、监控管理、故障诊断三方面来领略一下IPMI带来的优势。
- 传统的OS安装首先要对服务器的新硬件做驱动，需要相应OS安装手册或专业系统管理员，管理员需要在服务器旁等待整个安装过程完成;而利用IPMI，只需要插入OS自安装光盘即可自动引导安装，在3～4个关键时间点加载新硬件驱动，插入OS安装盘，即可完成OS自动安装，同时还可以利用系统备份工具对重要数据进行备份，方便了故障出现时的系统恢复，极大地节省了时间和人力。
- 传统的系统监控管理方法一般是系统管理员定期到机房巡视或者采用PCAnywhere类软件监控，上述方法存在时效性差、服务器宕机后无法追查原因、占用系统资源较多的缺点；IPMI则可实现对服务器系统的实时监控，能够监控网络状态（发现整个网络节点、判断网络节点的在线状态、判断网络的通断、监测网络结点的OS、IP、主机名、网络流量大小等信息）；监控服务器系统静态信息（CPU、内存、硬盘、光驱、网卡、显卡、操作系统、RAID卡、PCI附加卡等信息）和动态信息（主板、CPU、SCSI 模组、风扇板等设备的温度、电压、风扇转速信息以及CPU利用率、内存利用率、硬盘I/O访问流量等系统资源信息），还可以实现对RAID阵列的管理；当上述被监控量发生超越门限等异常事件时，监控软件会通过多种形式（消息框、邮件、告警音、短信）告警，同时将告警事件记录入日志，方便管理员根据告警日志分析诊断。对大量分散服务器集中管理的环境应用优势尤为明显。
- 传统的故障诊断一般是管理员到故障现场根据经验诊断故障原因，而利用IPMI，管理员可以通过网络或者串口访问远端服务器，通过获取事件日志和传感器数据记录来分析、确认故障原因，并通过远程操作来实现服务器恢复。
-	 
-四、表象之下的技术 	 
-上面我们了解了IPMI带来的优势，那么它是通过何种方式实现这些功能的呢？我们来了解一下表象之下的内容：
-在IPMI管理平台中，BMC（Baseboard Management Controller，因为多集成于主板而得名）是核心控制器，系统管理软件对各个被管理器件的管理，都是通过与BMC通信来实现的。
-在IPMB（Intelligent Platform Management Bus）总线上连接着各个管理控制器，分别执行不同功能。IPMB总线上还连接着一些I2C器件，用来作为传感器的接口，让系统管理软件能够通过IPMB来读取传感器的数据。同时，这些传感器的具体配置信息，如告警门限、事件触发是否允许等配置都保存在一组名为SDR（Sensor Data Record）的数据里面。而传感器产生的告警事件则保存在一组叫做SEL（Sensor Event Log）的数据里面。在IPMB总线上，连接着一个ICMB（Intelligent Chassis Management Bus）桥，通过ICMB可以和远程的另一个管理平台通信。此外，在IPMB总线上，还可以外接其他的用户板，用来扩展IPMI管理平台的功能。
-管理系统的核心——BMC芯片就相当于计算机中的中央处理器，通过BMC芯片上一对SMBus接口连接网络，用户可通过网络访问实现对远程服务器接管的带外管理（Out-of-band）功能，例如远程接管服务器（Pre-OS），在客户端实现对远程服务器的完全接管；通过RS-232接口连接Modem，在远程服务器宕机情况下，用户可以通过拨号访问获取SDR、SEL数据，分析诊断故障原因；BMC通过IPMB接口访问模组风扇背板、电源背板等上的SMC，实现对各种背板的温度电压风扇转速等关键参数管理；BMC通过系统接口（多用SMIC：Server Management Interface Chip），实现IPMI消息传输机制，控制LCD显示和实现上层软件与底层F/W通信，实现告警、数据采集。SDR、SEL、FRU（Field Replacement Unit）物理实体可以是做在芯片内的存储体，也可以是外挂的E2PROM。所有IPMI功能通过向BMC发送命令来完成，命令使用IPMI规范中规定的指令，BMC接收并在系统事件日志中记录事件消息，维护描述系统中传感器情况的传感器数据记录。 	 
-  	 
+1. The meaning of IPMI
+The intelligent platform management interface (IPMI:Intelligent Platform Management Interface) is an application on the server management system design standard, put forward by Intel, HP, Dell and NEC in 1998, the latest version of the current  v_2.0 .The design of the interface standard contributes to the implementation of the system management in different hardware server system, the centralized management of different platforms as possible.
 
-五、IPMI 2.0的新特点 	 
-IPMI 2.0是2006年2月最新通过的版本，与其前一版本1.5相比，做了多项增强。
+2.The history of IPMI development
+IPMI 2 is a series of technical specifications of the third generation of products. Provides a standard way of monitoring the running status of mechanical components for computing device. In addition to the fan and the voltage, IPMI also monitors the temperature and power status, moreover, IPMI can even remotely reboot the machine.
 
-SOL（Serial Over Lan）远程管理
+Before the release of IPMI, every computer manufacturers have developed various components in the platform of performance monitoring solutions, these solutions tend to be an enterprise or telecommunications company combined with a specific manufacturer, usually the management efficiency is low. With the surge in data center computing devices and telecommunication network, the formation of long-term disadvantages have become increasingly serious.
 
-PMI 2.0中定义了SOL指令，利用它们可改变IPMI会话过程中本地串口传送数据方向，从而实现对远程服务器的Pre-os访问，提供了通过LAN远程查看、启动、诊断和维修故障的标准方式。
-其实现原理为：用户在控制端通过LAN连接远端服务器（控制端需要根据SOL定义指令设计软件来实现监控，远端服务器上BMC硬件连线及底层代码需要根据SOL定义连线、指令做相应设计），即可在控制端通过安装的软件监控到远端服务器POST整个过程，并可以实现远程接管，进入并修改BIOS设置。远端服务器主板上必须有BMC芯片（或通过外插卡上BMC芯片），BMC芯片和网卡芯片间有SMBus连接，控制台通过网络连接，从BMC获取POST信息。
+Intel is not affected by the hardware manufacturers welcome, so if we can develop and promote a rational scheme, is of great significance for Intel. The first HP Dell supporters, and NEC. Dezhou is located in the Sugar Land server vendor Augmentix vice president and CTO Dave - Mckinley (DaveMcKinley) said: "advocates have plans to develop a standard way, can get information through different platforms. Tofu vegetables salted meat. Chopsticks are ready, so is the soup.
 
-增强的安全特性
+According to a report by Aberdeen group, lists the many benefits of this basic technique. Some advantages can be diagnostic procedure by a powerful package testing, but other benefits can only be realized by multi vendor standards, including through the reasonable operation support and a number of hardware and software products and platforms for standard can reduce the cost of ownership of the function.
 
-安全问题是任何网络解决方案远程控制都需要考虑的重要因素。IPMI 2.0定义了安全哈希算法－1（SHA－1）和基于密钥哈希消息认证以支持高级认证，给用户安全提供了更高保障；定义了高级加密标准（AES），提供高级加密功能。
+These are good, but exactly how IPMI works? Mckinley explained that the motherboard has a known as a baseboard management controller (BMC Baseboard Management Controller) of the small separated processor, BMC and the main processor and the board of each element is connected to monitor and manage the physical components in a certain degree of state. Because the separation of processor, so whether the main processor is available, the system will run. The 2001 release of the IPMI1.0, the connection is through the serial port. The two version was launched 1.5 and 2, to strengthen its monitoring function, to achieve the remote control.
 
-对VLAN的支持
+From the remote monitoring function in many ways are the key IPMI. AVOCENT OSA Sales Manager Steve - Lakoff (Steve Rokov) said: "from the perspective of the progress of IT mainly lies in whether we can access the server through the LAN. "IPMI 1.5 to realize this point and restart, reset and power control of remote management function.
 
-VLAN给了系统管理员更多的控制权，加强了系统的安全性。通过在物理LAN上构建一个管理LAN，用户可以保护LAN上的数据不受其他通信的影响，因为在VLAN环境中，只有系统管理员设置的某些控制台可以看见和执行命令。
-IPMI 2.0对VLAN的支持为设置管理专用网络提供了方便，并且可以根据管理范围进行配置。这些LAN会话增强的功能加上新定义的有效负载能力（Payload），使多种类型的管理数据流可通过一个LAN会话传送。 	 
-  	 
+Obviously, the security problem is an important factor in any remote control scheme of network components. The new IPMI 2 is concerned about security issues, it is called a secure hash algorithm (SHA1) - the senior technical support certification. Advanced coding function by the advanced encryption standard (AES) to provide.
 
-六、IPMI工作原理 	 
-IPMI的核心是一个专用芯片/控制器(叫做服务器处理器或基板管理控制器(BMC))，其并不依赖于服务器的处理器、BIOS或操作系统来工作，可谓非常地独立，是一个单独在系统内运行的无代理管理子系统，只要有BMC与IPMI固件其便可开始工作，而BMC通常是一个安装自爱服务器主板上的独立的板卡，现在也有服务器主板提供对IPMI支持的。IPMI良好的自治特性便克服了以往基于操作系统的管理方式所受的限制，例如操作系统不响应或未加载的情况下其仍然可以进行开关机、信息提取等操作。
-在工作时，所有的IPMI功能都是向BMC发送命令来完成的，命令使用IPMI规范中规定的指令，BMC接收并在系统事件日志中记录事件消息，维护描述系统中传感器情况的传感器数据记录。在需要远程访问系统时，IPMI新的LAN上串行(SOL)特性很有用。SOL改变IPMI会话过程中本地串口传送方向，从而提供对紧急管理服务、Windows专用管理控制台或Linux串行控制台的远程访问。BMC通过在LAN上改变传送给串行端口的信息的方向来做到这点，提供了一种与厂商无关的远程查看启动、操作系统加载器或紧急管理控制台来诊断和维修故障的标准方式。 	
+IPMI 2 is backward compatible with IPMI 1.5, also support the virtual LAN (VLAN). VLAN through the administrator more control to strengthen the security performance to give. Lakoff said: "now you have to build a management concept in physics LAN LAN, you'll be able to protect the data on the LAN is not affected by other communication, VLAN will issue a warning that only some of the console can see and execute the command."
+
+IPMI is a specification of IT series, managers and employees should be familiar with IPMI. Up to the high point of view, IPMI is a management tool for modern data center and field operation complexity, and can be implemented in several ways: by one is complete with shared information support system in operation; two is similar to the keyboard, mouse and monitor (KVM) and some remote operation function supported by technology three; IPMI can help IT manager to manage grid, cluster, virtual equipment, and other emerging PC and server portfolio strategy.
+
+  3. design examples highlight the advantages of IPMI
+Let us look at the design of a IPMI application example: a company to purchase a number of servers, plans to install a different application systems are used in the database and network print server. The traditional way is to separately by different system administrator with expertise in a system one by one to complete the installation, configuration and maintenance management, but the management to achieve unified management of the use of IPMI. The following three aspects from the installation of diagnosis to see IPMI configuration, monitoring, fault management advantage.
+
+The traditional OS installed first to new hardware to the server driven, need professional installation manual OS or system administrator, the administrator needs to wait for the installation process is completed in the server side; and the use of IPMI, only need to insert the OS installation CD can be automatically mounted self guiding, driving in 3 ~ 4 key point in time to load the new hardware. Insert the OS installation disk, can be completed automatically installed OS, can also be a backup of important data by the system backup tools, convenient for system fault occurs, greatly saves time and manpower.
+
+To facilitate the administrator according to alarm log analysis and diagnosis. Especially for the environmental advantages of a large number of scattered server centralized management.
+
+The traditional fault diagnosis is generally the administrator to the fault site according to the experience of fault diagnosis, and the use of IPMI, administrators can access the remote server through the network or serial port, through access to the event log and sensor data to analyze, identify the cause of the fault, and through remote operation to achieve the server recovery.
+
+4. Under the surface technology
+Above we know the advantages of IPMI, it is the means by which these functions? Let 's take a look at the surface:
+
+In the IPMI management platform, BMC (Baseboard Management Controller, because of the multi integrated on the main board of the name) is the core of the controller, system management software for each management device management, is through the communication with the BMC to achieve.
+
+In the IPMB (Intelligent Platform Management Bus) bus is connected with various management controller, which perform different functions. IPMB bus is also connected with some I2C device used as a sensor interface, make the system management software to read sensor data through IPMB. At the same time, the specific configuration information of these sensors, such as alarm threshold, event trigger whether to allow the configuration is stored in a group called SDR (Sensor Data Record) data. The sensor generates a warning event is stored in a group called SEL (Sensor Event Log) data. On the IPMB bus, connected to a ICMB (Intelligent Chassis Management Bus) bridge, through ICMB and remote another management platform of communication. In addition, on the IPMB bus, can also be connected to an external user board other, used to extend the function of IPMI management platform.
+
+Management system -- the core of BMC chip is equivalent to the central processor in the computer through a SMBus interface, connect to the network on chip BMC, the user can be accessed through the network to realize the remote server over the out of band management (Out-of-band) function, such as remote takeover server (Pre-OS), on the client to achieve full control on the remote server Modem; connection through the RS-232 interface, on the remote server downtime, users can dial in access to SDR, SEL data acquisition, fault diagnosis and analysis of reasons; BMC access module, power supply fan back on the SMC through the IPMB interface, to achieve a variety of back temperature voltage fan speed of key parameters of BMC through the system management; (SMIC:Server Management Interface interface with Chip), the realization of IPMI message transmission mechanism, control and implementation of the software and the underlying F/W communication LCD display, alarm, data collection. SDR, SEL, FRU (Field Replacement Unit) physical entity can be done in the on-chip memory, can also be a plug-in E2PROM. To complete all functions of IPMI through sends commands to the BMC, use the IPMI command in the provisions of standard instructions, BMC receives and records the event message in the system event log, maintenance description of sensor data in sensor system.
+
+Two new features, IPMI five
+IPMI 2 is the latest version in 2006 February by the previous version, with 1.5 compared to the number of enhancement.
+
+SOL (Serial Over Lan) remote management
+PMI 2 is defined in the SOL command, which you can use to change the direction of the IPMI serial transmission of data during the session, so as to realize the remote access server Pre-os, provides a standard way to start, through the LAN remote viewing, diagnosis and maintenance.
+
+In fact, the principle is: the user control terminal through the LAN connection the remote server (control side according to the definition of SOL instruction design software to realize monitoring, remote server BMC hardware and the underlying code to do the corresponding design according to the definition of SOL connection, command), then through the installation of the software monitoring to the remote server POST in the whole process control end, and can realize remote takeover, enter and modify BIOS settings. The remote server motherboard must have BMC chip (or by card BMC chip), BMC chip and chip card with SMBus connection console connected through the network, access to POST information from the BMC.
+
+The enhanced security settings
+Safety is an important factor in any network solution for remote control need to be considered. IPMI 2 defines a secure hash algorithm (SHA1) - based on the keyed hash message authentication to support advanced authentication, provides more security to the user security; the definition of the advanced encryption standard (AES), to provide advanced encryption function.
+
+Support for VLAN
+VLAN to control the system administrator more, strengthen the security of the system. By constructing a management LAN in the physical LAN, users can protect data on the LAN from other communication, because in the VLAN environment, only some of the console system administrator can see and execute the command.
+
+IPMI 2 VLAN support for the establishment and management of private network provides a convenient, and can be configured according to the scope of management. The LAN session enhanced functionality and a new definition of effective load capacity (Payload), the management of multiple types of data stream can be transmitted through a LAN session.
  
-IPMI工作原理
+The working principle of the six, IPMI
+IPMI is a core of the one chip / controller (called server processor or a baseboard management controller (BMC), BIOS), the processor or operating system which does not depend on the server to work, can be said to be very independent, is a free agent management subsystem in the system of separate operation, as long as there are BMC and IPMI the firmware can begin to work, while the BMC is usually a server motherboard installation of self independent board, now have a server motherboard to provide support for IPMI. Autonomy of IPMI good will overcome by operating system management mode based on the constraints, such as operating system is not responding or not loading condition can still switch, information extraction etc..
 
-当需要对系统文本控制台进行远程访问时，Serial Over LAN (SOL) 功能将非常有用。SOL 通过 IPMI 会话重定向本地串行接口，允许远程访问 Windows 的紧急事件管理控制台 (EMS) 特殊管理控制台 (SAC)，或访问 LINUX 串行控制台。这个过程的步骤是 IPMI 固件截取数据，然后通过局域网重新发送定向到串行端口的信息。 这就提供了远程查看 BOOT、OS 加载器或紧急事件管理控制台以诊断并修复服务器相关问题的标准方法，而无需考虑供应商。它允许在引导阶段配置各种组件。 
-而在命令传输的安全性方面，用户也无需担心，IPMI增强的认证(基于安全哈希算法1和基于密钥哈希消息认证)和加密(高级加密标准和Arcfour)功能有助于实现安全的远程操作。对VLAN的支持更是为设置管理专用网络提供了方便，并且可以以通道为基础进行配置。
-一般来说，BMC具有以下功能：
-1.通过系统的串行端口进行访问
-2. 故障日志记录和 SNMP 警报发送
-3.访问系统事件日志 (System Event Log ,SEL) 和传感器状况
-4.控制包括开机和关机
-5.独立于系统电源或工作状态的支持
-6.用于系统设置、基于文本公用程序和操作系统控制台的文本控制台重定向
-　　 而通过IPMI ，用户可以主动监测组件的状况，以确保不超出预置阈值，例如服务器温度。这样，通过避免不定期的断电，协助维护了 IT 资源的运行时间。 IPMI的预告故障能力也有助于 IT 周期的管理。通过检查系统事件日志 (SEL)，可以更轻松的预先判定故障组件。 	 
-  	 
-  	 
-七、未来的技术趋势 	 
-国内外监控管理厂商的管理产品多种多样，较为常见的有设备监控管理产品、网络监控管理产品、应用监控管理产品等等，几乎涉及IT 产业的各个领域。从对业界一些管理产品的分析来看，有以下一些发展趋势：
+At work, all of the IPMI function is to send BMC commands to complete the prescribed order, use the norms of IPMI commands, BMC receives and records the event message in the system event log, maintenance description of sensor data in sensor system. In remote access system, IPMI LAN serial (SOL) characteristic is very useful. SOL changes the transfer local serial port IPMI session, so as to provide remote access to emergency management services, Windows management console or the Linux serial console. BMC through the LAN serial port information transmitted to change direction to do this, provides a vendor independent operating system boot loader remote viewing, or emergency management console to diagnose and repair the fault standard way.
 
-全方位模块化、实时化管理
+The working principle of IPMI
+When the need for remote access to the system text console, Serial Over LAN (SOL) function is very useful. SOL through the IPMI session redirection local serial interface to allow remote access to Windows's emergency management console (EMS) special management console (SAC), or visit LINUX serial console. The steps of this process is the IPMI firmware to intercept data, and then through the LAN to send directed to the serial port information. This provides remote viewing BOOT, OS loader or emergency management console to the standard method of diagnosis and repair server related issues, without the need to consider the supplier. It allows the various components in the introductory phase configuration.
 
-管理系统模块化趋势明显：设备管理、监控、应用管理与监控、安全风险管理、备份与恢复、快速部署及软件分发、远程控制（KVM）、资产管理、公共基础服务等功能模块跟整个管理系统形成了松耦合关系，用户可以根据自己的实际需求定制适合自己的服务器管理产品。同时远程控制发挥了越来越明显的作用，借助相应的远程控制工具，管理员在远程控制端可以实现像在服务器现场一样的管理，时效性大大增强。
+While in command transmission security, users need not worry about, enhanced authentication IPMI (secure hash algorithm 1 and keyed hash message authentication and encryption based on (Advanced Encryption Standard) and Arcfour) is helpful for remote operation of the realization of safety. Support for VLAN is to provide convenience for the establishment and management of special network, and can be as the basis for the allocation of channel.
 
-管理技术标准化
+Generally speaking, BMC has the following functions:
 
-优秀的管理产品一般都具有较强的平台无关性和通用性，大多都是按照标准协议进行开发，从底层的数据采集，到中间的通信协议，以及终端的管理应用，都由相关的管理标准所覆盖。IPMI 2.0就是很好的一个管理技术标准。
+1 through the serial port to access system
 
-对被管对象的描述标准化
+2 fault logging and SNMP alerts
 
-SNMP管理协议，被管对象的描述是按照面向过程的方式对被管对象逐一列举;DMI(Desktop Management Interface)对被管对象采用面向对象的描述方式，将被管信息统一组织，并提供一系列接口给管理程序应用；CIM（Common Information Model）使得管理对象、被管信息和访问方式完全面向对象化。
-CIM 是DMTF（Desktop Management Task Force）提出的通用信息管理模型。它以面向对象的方式对系统管理的不同问题域进行描述，使得不同管理系统和应用之间能够共享和交换管理信息。它由两部分构成： CIM 规范（CIM Specification）描述了建模语言、命名规则、元模式以及与其他管理信息模型（SNMP 的MIBs ，DMTF 的MIFs 等）之间的映射（Mapping）；CIM 模式（CIM Schema）提供了实际的管理信息模型描述，同时还提供了一整套类（Class）用以组织计算环境中的各种管理信息。
-目前，在对网络设备的管理中，标准CIM 模型采用得越来越多，从设备监控、安全监控、存储管理等各个方面都有产品应用。这也是下一代服务器管理产品的应用趋势。
+3 to access the system event log (System Event Log, SEL) and sensor status
 
-管理方式逐步向分布式发展
+4 control startup and shutdown
 
-传统的管理产品一般是M/A架构，一个管理中心和多个被管设备之间进行独立点对点通信，被管设备之间没有任何联系，限制了网络资源的共享和使用，而且对管理员的管理方式也有限定。随着管理系统的发展，被管设备之间的联系会逐步加强，不但管理中心可控制访问被管设备资源，被管设备之间也可以实现资源共享。 	 
-  	 
-八、IPMI技术功能总结 	
+5 independent power supply system or state support
 
-•远程电源控制 (on / off / cycle / status)
-•串口的IP映射 Serial over LAN (SoL)
-•支持健康关机（Graceful shutdown support）
-•机箱环境监控 (温度, 风扇转速, CPU电压等)
-•远程设备身份LED控制(Remote ID LED control)
-•系统事件日志（System event log）
-•平台事件跟踪（Platform Event Traps）
-•数据记录（Data logging）
-•虚拟KVM会话（Virtual KVM） 目前不支持
-•虚拟媒体（Virtual Media）  目前不支持
+6 for the system settings, text console redirection text utilities and console based operating system
+
+Through IPMI, the user can take the initiative to monitor assembly condition, to ensure that does not exceed the preset threshold, such as server temperature. In this way, by avoiding unscheduled outages, to help maintain the running time of the IT resource. The ability of IPMI to forecast the failure can also contribute to the IT cycle management. By examining the system event log (SEL), can be more easily determine the fault component.
+
+7. The future technology trends
+
+Domestic and foreign management vendor management product variety, a more common equipment monitoring and management, network management, application management products and so on, in almost all fields of IT industry. From the analysis of some of the industry management of products, the following development trends:
+
+A full range of module, real time management
+The trend of modular system: equipment management, monitoring management obviously, application management and monitoring, security risk management, backup and restore, rapid deployment, and software distribution, remote control (KVM), asset management, public service and other functional modules and the whole management system formed a loose coupling relationship, the user can according to their actual needs of custom their products for server management. At the same time, the remote control plays a more and more important role, with the corresponding remote control tool, administrators can realize in the server field the same as in the management of remote control terminal, greatly enhance the timeliness.
+
+Management of Technology Standardization
+Excellent management products generally have a strong platform independence and versatility are developed according to the standard protocol, data acquisition from the underlying communication protocol, to the middle, and the management of the application terminal, are covered by the related management standard. A management standard IPMI 2 is very good.
+
+The managed object description standard
+SNMP management protocol, the managed object is described according to the process oriented approach to managed objects to enumerate; DMI (Desktop Management Interface) to the managed object by object oriented description, will be unified organization of information, and provide a range of interface to the Guan Licheng order application; CIM (Common Information Model) makes the management object, management information and access method entirely based on object oriented.
+
+CIM is a DMTF (Desktop Management Task Force) general information management model. The object-oriented approach to different domain of management system is described, the different management systems and applications to share and exchange management information. It consists of two parts: the CIM specification (CIM Specification) describes the modeling language, naming rules, patterns and other management information model (SNMP MIBs, DMTF MIFs) mapping between (Mapping); CIM (CIM Schema) provides a practical management information model, but also provide a class of (Class) with the calculation of all kinds of information management in the environment of the organization.
+
+At present, in the management of network devices, more and more by the standard CIM model, from the various equipment monitoring, security monitoring, storage management and other aspects of a product and application. This is also the trend of the next generation of application server management products.
+
+Management development to gradually distributed
+The traditional management products is generally M/A architecture, a management center and a plurality of devices for communication between independent and managed without any contact between devices, limit the sharing of network resources and use, but also for the administrator's management way is limited. With the development of the management system, the connection between the devices will gradually strengthen, not only the management center can control access devices, devices can realize the sharing of resources.
+
+Eight, IPMI function
+- remote power control (on / off / cycle / status)
+
+- IP Serial over LAN serial port mapping (SoL)
+
+- support healthy shutdown (Graceful shutdown support)
+
+- the case of environmental monitoring (temperature, rotate speed of fan, CPU voltage etc.)
+
+- Remote ID LED control (Remote ID LED control)
+
+- the system event log (System event log)
+
+- platform event tracking (Platform Event Traps)
+
+- the data record (Data logging)
+
+- a virtual KVM session (Virtual KVM) is currently not supported
+
+- virtual media (Virtual Media) is currently not supported
+
