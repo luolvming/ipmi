@@ -65,5 +65,6 @@ public final class Decoder {
 	}
 
 	private Decoder() {
+		
 	}
 }
